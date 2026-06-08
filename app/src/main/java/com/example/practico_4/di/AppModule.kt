@@ -1,11 +1,20 @@
 package com.example.practico_4.di
 
+import com.example.practico_4.datos.repositorios.SocketRepositorio
+import com.example.practico_4.datos.repositorios.SocketRepositorioImpl
+import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
-    // Desarrollador B: agregar aquí el provider de SocketRepositorio
+abstract class AppModule {
+
+    @Binds
+    @Singleton
+    abstract fun bindSocketRepositorio(
+        socketRepositorioImpl: SocketRepositorioImpl
+    ): SocketRepositorio
 }

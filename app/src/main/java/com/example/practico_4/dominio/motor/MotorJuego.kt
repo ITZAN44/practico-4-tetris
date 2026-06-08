@@ -52,7 +52,11 @@ object MotorJuego {
             val columnaVacia = (0 until COLUMNAS).random()
             nuevaGrilla.add(List(COLUMNAS) { col -> if (col == columnaVacia) null else TipoPieza.BASURA })
         }
-        return estado.copy(grilla = nuevaGrilla)
+        // Desplazamos la pieza activa hacia arriba para que no quede "enterrada" en la basura
+        return estado.copy(
+            grilla = nuevaGrilla,
+            piezaActiva = estado.piezaActiva.copy(fila = estado.piezaActiva.fila - cantidad)
+        )
     }
 
     fun calcularLineasAtaque(lineasEliminadas: Int): Int = when (lineasEliminadas) {
